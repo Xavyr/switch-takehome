@@ -25,8 +25,8 @@ export const BenefitBlocks = () => {
 
   return (
     <div className="flex flex-wrap justify-center">
-      {loading && new Array(16).fill(0).map(() => {
-        return <LoadingBlock />
+      {loading && new Array(16).fill(0).map((_, i) => {
+        return <LoadingBlock key={`key-${i}`} />
       }) }
       {data?.benefits?.map(({ title, description }: Benefit) => {
         return (
