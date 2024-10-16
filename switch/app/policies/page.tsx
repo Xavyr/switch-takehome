@@ -1,5 +1,7 @@
-export default function Home() {
+import { UnderConstruction } from "@/components/UnderConstruction";
+
+export default function Policies() {
   return (
-    <div style={{ backgroundColor: "white", height: 1000 }}></div>
+    <UnderConstruction page={'policies'} />
   );
 }

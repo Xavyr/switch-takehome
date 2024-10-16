@@ -1,5 +1,5 @@
 import { BenefitBlocks } from "@/components/BenefitBlocks";
 
-export default function Home() {
+export default function Benefits() {
   return <BenefitBlocks />;
 }

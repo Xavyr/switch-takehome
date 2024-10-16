@@ -1,6 +1,10 @@
-export default function Home() {
+import { UnderConstruction } from "@/components/UnderConstruction";
+
+export default function Safety() {
     return (
-      <div style={{ backgroundColor: "white", height: 1000 }}></div>
+      <div style={{ backgroundColor: "white", height: 1000 }}>
+        <UnderConstruction page={'safety'} />
+      </div>
     );
   }
   
