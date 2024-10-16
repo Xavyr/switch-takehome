@@ -94,7 +94,6 @@ const BenefitBlock: React.FC<Benefit> = ({ title, description }) => {
         <motion.button
           disabled={didAcknowledge}
           onClick={() => {
-            console.log('fired')
             if (!didAcknowledge) {
               setRotate(360);
               setDidAcknowledge(true);
