@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { LoadingBlock } from "./LoadingBlock";
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api/benefits"
+console.log(API_URL)
 type Benefit = { title: string; description: string };
 
 export const BenefitBlocks = () => {
@@ -11,7 +13,7 @@ export const BenefitBlocks = () => {
   useEffect(() => {
     setLoading(true);
     const fetchBenefits = async () => {
-      const response = await fetch("http://localhost:3000/api/benefits");
+      const response = await fetch(API_URL);
       if (!response.ok) {
         throw new Error("Failed to fetch benefits");
       }
