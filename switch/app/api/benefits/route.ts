@@ -8,9 +8,9 @@ const callDatabase = async () => {
   });
 };
 
-export async function GET(request: Request) {
+export async function GET() {
   const benefits = await callDatabase()
-  
+
   return new Response(JSON.stringify(benefits), {
     status: 200,
     headers: {
