@@ -8,14 +8,16 @@ export const Header = () => {
 
   return (
     <div className="bg-black h-18  flex flex-col md:flex-row items-center justify-between px-8 bg-black-800 md:mt-0 sm:pt-8 md:pt-2">
-      <Image
-        src="/logo_white.png"
-        alt="Description of the image"
-        width={450}
-        height={450}
-        priority
-        className="md:order-1 md:mr-20 "
-      />
+      <div style={{ position: "relative", width: "100%"}}>
+        <Image
+          src="/logo_white.png"
+          alt="Description of the image"
+          width={450}
+          height={32}
+          priority
+          className="md:order-1 md:mr-20 "
+        />
+      </div>
 
       <div className="flex justify-between space-x-4 md:order-2">
         <Link href="/benefits">
