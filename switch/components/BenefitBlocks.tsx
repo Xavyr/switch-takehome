@@ -2,39 +2,30 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { LoadingBlock } from "./LoadingBlock";
-
-const API_URL =
-  process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api/benefits";
+import { gql, useQuery } from "@apollo/client";
 
 type Benefit = { title: string; description: string };
 
+const GET_ALL_BENEFITS = gql`
+  query getAllBenefits {
+    getAllBenefits {
+      title
+      description
+    }
+  }
+`;
+
 export const BenefitBlocks = () => {
-  const [data, setData] = useState<{ benefits: Benefit[] }>();
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    setLoading(true);
-    const fetchBenefits = async () => {
-      const response = await fetch(API_URL);
-      if (!response.ok) {
-        throw new Error("Failed to fetch benefits");
-      }
-      const results = await response.json();
-      setData(results);
-      setLoading(false);
-    };
-
-    fetchBenefits();
-  }, []);
+  const { loading, data } = useQuery(GET_ALL_BENEFITS);
 
   return (
     <div className="flex flex-wrap justify-center">
       {loading &&
-      // eslint-disable-next-line no-unused-vars
+        // eslint-disable-next-line no-unused-vars
         new Array(16).fill(0).map((_, i) => {
           return <LoadingBlock key={`key-${i}`} />;
         })}
-      {data?.benefits?.map(({ title, description }: Benefit) => {
+      {data?.getAllBenefits?.map(({ title, description }: Benefit) => {
         return (
           <BenefitBlock
             key={`${title}-key`}
@@ -56,7 +47,7 @@ const BenefitBlock: React.FC<Benefit> = ({ title, description }) => {
       transition={{ type: "spring" }}
       className="box flex flex-col border m-8 border-black max-w-[350px]"
       initial={{ opacity: 0, scale: 0 }}
-      animate={{ opacity: 1, scale: 1, rotate: [0, 0, 360, 360, 0], }}
+      animate={{ opacity: 1, scale: 1, rotate: [0, 0, 360, 360, 0] }}
     >
       <div className="bg-red-600 text-white text-lg font-bold p-4 flex flex-row justify-between">
         {title}
@@ -71,7 +62,6 @@ const BenefitBlock: React.FC<Benefit> = ({ title, description }) => {
               duration: 2,
               ease: "easeInOut",
               times: [0, 0.2, 0.5, 0.8, 1],
-              repeat: Infinity,
               repeatDelay: 1,
             }}
             xmlns="http://www.w3.org/2000/svg"
